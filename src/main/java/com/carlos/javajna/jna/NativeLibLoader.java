@@ -1,4 +1,4 @@
-package com.carlos.javajna.utils;
+package com.carlos.javajna.jna;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +10,12 @@ public class NativeLibLoader {
 
 	public static void load(String libName) {
 		try {
-			String filename = getLibraryFileName(libName);
-			InputStream in = NativeLibLoader.class.getResourceAsStream("/natives/" + filename);
+			String path = getLibraryPath(libName);
+			System.out.println("[NativeLibLoader] Loading " + path);
+
+			InputStream in = NativeLibLoader.class.getResourceAsStream(path);
 			if (in == null) {
-				throw new UnsatisfiedLinkError("Cannot find native library in resources:" + filename);
+				throw new UnsatisfiedLinkError("Cannot find native library in resources:" + path);
 			}
 			File temp = File.createTempFile(libName, getLibraryExtension());
 			temp.deleteOnExit();
@@ -22,6 +24,10 @@ public class NativeLibLoader {
 		}catch (IOException e) {
 			throw new RuntimeException("Fail to load native lib:" + libName, e);
 		}
+	}
+
+	private static String getLibraryPath(String libName) {
+		return "/natives/" + getLibraryFileName(libName);
 	}
 
 	private static String getLibraryFileName(String libName) {
