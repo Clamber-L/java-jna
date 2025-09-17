@@ -18,10 +18,11 @@ public class AlarmController {
         hostNo.SKHostNoGroup = (byte) Integer.parseInt(devNo.substring(4, 6), 16);
 
         hostNo.write(); // 写入JNA内部内存
-        int queryResult = AlarmSDKLibrary.getInstance().Alarm_QueryDevice(AlarmSDKConstants.GetStateType.GetArmState.getCode(),
-                hostNo, 1, AlarmSDKConstants.ZoneType.ZoneType_Unknown.getCode());
-        System.out.println("QueryDevice (GetArmState) result: " + queryResult);
+//        int queryResult = AlarmSDKLibrary.getInstance().Alarm_QueryDevice(AlarmSDKConstants.GetStateType.GetArmState.getCode(),
+//                hostNo, 1, AlarmSDKConstants.ZoneType.ZoneType_Unknown.getCode());
+//        System.out.println("QueryDevice (GetArmState) result: " + queryResult);
 
-//        AlarmSDKLibrary.getInstance().Alarm_ControlDevice(AlarmSDKConstants.ControlType.Ctrl_Arm.getCode(), hostNo, )
+        int control_res = AlarmSDKLibrary.getInstance().Alarm_ControlDevice(AlarmSDKConstants.ControlType.Ctrl_Arm.getCode(), hostNo, new byte[0], 0, AlarmSDKConstants.ZoneType.ZoneType_Unknown.getCode());
+        System.out.println("control result: " + control_res);
     }
 }

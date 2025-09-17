@@ -9,7 +9,7 @@ public interface AlarmSDKLibrary extends Library, AlarmSDKConstants {
     // 在Ubuntu上，JNA会自动查找 libAlarmSDK.so
     // 懒加载 Holder
     class Holder {
-        static final AlarmSDKLibrary INSTANCE = Native.loadLibrary("AlarmSDK", AlarmSDKLibrary.class);
+        static final AlarmSDKLibrary INSTANCE = Native.load("AlarmSDK", AlarmSDKLibrary.class);
     }
 
     static AlarmSDKLibrary getInstance() {
