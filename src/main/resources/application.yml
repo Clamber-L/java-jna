@@ -1,0 +1,6 @@
+app:
+  natives-path: "D:\\x64"  # 外部 DLL 文件夹路径，换成你实际路径
+  libraries: pthreadVC2.dll,QRNetSDK.dll,AlarmSDK.dll
+server:
+  address: 0.0.0.0
+  port: 9999
